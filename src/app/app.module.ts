@@ -3,16 +3,33 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CoreModule } from '@core/core.module';
+
+import { HeaderComponent } from '@layout/header/header.component';
+import { FooterComponent } from '@layout/footer/footer.component';
+import { MainComponent } from '@layout/main/main.component';
+
+
+import { SharedModule } from '@shared/shared.module';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
-    AppComponent
-  ],
+    AppComponent,
+    MainComponent,
+    HeaderComponent,
+    FooterComponent
+],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CoreModule,
+    SharedModule
   ],
-  providers: [],
+  providers: [{
+    provide: LocationStrategy,
+    useClass: PathLocationStrategy
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
