@@ -1,11 +1,11 @@
 <div class="container">
     <div class="row gy-3">
-        <div class="col col-lg-3">
+        <div *ngIf="searchHistory.length > 0" class="col col-md-3">
             <div class="card h-100">
                 <div class="card h-100">
                     <div class="card-body d-flex flex-column align-items-center">
-                        <div *ngIf="searchHistory.length > 0" class="w-100 text-center">
-                            <p>Historial de búsqueda:</p>
+                        <h5 class="card-title mb-4">Historial de Búsqueda: </h5>
+                        <div class="w-100 text-center">
                             <button *ngFor="let query of searchHistory" class="btn btn-outline-secondary w-100 mb-2"
                                 (click)="repeatSearch(query)">
                                 {{ query }}
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="col col-lg-9">
+        <div class="col">
             <div class="row row-cols-1 g-4">
                 <div class="col">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
@@ -24,15 +24,17 @@
 
                 <div class="col">
                     <div class="container text-center">
-                        <div class="row row-cols-1 row-cols-md-4 g-4">
-                            <div class="col" *ngFor="let card of pagedCardsData">
-                                <div class="card">
-                                    <img class="card-img-top" [src]="card.images.original.url" [alt]="card.title">
-                                    <div class="card-body">
-                                        {{ card.title }}
+                        <div class="row g-4">
+                            <ng-container *ngFor="let card of pagedCardsData">
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                    <div class="card">
+                                        <img class="card-img-top" [src]="card.images.original.url" [alt]="card.title">
+                                        <div class="card-body">
+                                            {{ card.title }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </ng-container>
                         </div>
                     </div>
                 </div>
